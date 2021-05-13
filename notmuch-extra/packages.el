@@ -15,10 +15,10 @@
 (defun notmuch-extra/pre-init-notmuch ()
   (spacemacs|use-package-add-hook notmuch
     :post-init
-    :post-config
-
     ;; show new messages first
     (setq notmuch-search-oldest-first nil)
+
+    :post-config
 
     ;; configure sending via msmtp
     (setq message-send-mail-function 'message-send-mail-with-sendmail)
