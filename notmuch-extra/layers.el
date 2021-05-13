@@ -4,4 +4,4 @@
 ;;
 ;; This file is not part of GNU Emacs.
 
-(configuration-layer/declare-layer 'notmuch)
+(configuration-layer/declare-layer 'notmuchp)
