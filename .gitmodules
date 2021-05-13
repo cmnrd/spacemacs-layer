@@ -1,0 +1,3 @@
+[submodule "rgemulla"]
+	path = rgemulla
+	url = git@github.com:rgemulla/spacemacs-layers
