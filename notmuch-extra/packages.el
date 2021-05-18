@@ -52,60 +52,14 @@
          face
          t)))
 
-    ;; define additional key bindings
-    (define-key notmuch-show-mode-map "d"
-      (lambda ()
-        "toggle deleted tag for thread"
-        (interactive)
-        (if (member "deleted" (notmuch-show-get-tags))
-            (notmuch-show-tag (list "-deleted"))
-          (notmuch-show-tag (list "+deleted")))))
-    (define-key notmuch-search-mode-map "d"
-      (lambda ()
-        "toggle deleted tag for thread"
-        (interactive)
-        (if (member "deleted" (notmuch-search-get-tags))
-            (notmuch-search-tag (list "-deleted"))
-          (notmuch-search-tag (list "+deleted")))))
-
-    (define-key notmuch-show-mode-map "a"
-      (lambda ()
-        "archive message"
-        (interactive)
-        (notmuch-show-tag (list "-unread" "-inbox"))))
-    (define-key notmuch-search-mode-map "a"
-      (lambda ()
-        "archive thread"
-        (interactive)
-        (notmuch-search-tag (list "-unread" "-inbox"))))
-
-    (define-key notmuch-show-mode-map "S"
-      (lambda ()
-        "mark message as spam"
-        (interactive)
-        (notmuch-show-tag (list "+spam"))))
-    (define-key notmuch-search-mode-map "S"
-      (lambda ()
-        "mark thread as spam"
-        (interactive)
-        (notmuch-search-tag (list "+spam"))))
-
-    (define-key notmuch-show-mode-map "u"
-      (lambda ()
-        "toggle unread tag for message"
-        (interactive)
-        (if (member "unread" (notmuch-show-get-tags))
-            (notmuch-show-tag (list "-unread"))
-          (notmuch-show-tag (list "+unread")))))
-    (define-key notmuch-search-mode-map "u"
-      (lambda ()
-        "toggle unread tag for message"
-        (interactive)
-        (if (member "unread" (notmuch-search-get-tags))
-            (notmuch-search-tag (list "-unread"))
-          (notmuch-search-tag (list "+unread")))))
-
-    (define-key notmuch-search-mode-map "g"
-      'notmuch-poll-and-refresh-this-buffer)
-    (define-key notmuch-hello-mode-map "g"
-      'notmuch-poll-and-refresh-this-buffer)))
+    (evilified-state-evilify-map notmuch-search-mode-map
+      :mode notmuch-search-mode
+      :bindings
+      (kbd "a") 'notmuch-extra-search-archive-thread-down
+      (kbd "A") 'notmuch-extra-search-archive-thread-up
+      (kbd "d") 'spacemacs/notmuch-search-message-delete-down
+      (kbd "D") 'spacemacs/notmuch-search-message-delete-up
+      (kbd "J") 'notmuch-jump-search
+      (kbd "L") 'notmuch-search-filter
+      (kbd "g") 'notmuch-refresh-this-buffer
+      (kbd "M") 'compose-mail-other-frame)))

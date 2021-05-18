@@ -35,3 +35,20 @@
             tail (append tail '("sent"))))
   (setq res (append res (sort tags #'string<)))
   (append res tail))
+
+(defun notmuch-extra-search-archive-thread-down ()
+  "Archive thread down."
+  (interactive)
+  (notmuch-extra-search-archive-thread 'down))
+
+(defun notmuch-extra-search-archive-thread-up ()
+  "Archive thread up."
+  (interactive)
+  (notmuch-extra-search-archive-thread 'up))
+
+(defun notmuch-extra-search-archive-thread (go-next)
+  (notmuch-search-tag '("-inbox" "-unread"))
+  (if (eq 'up go-next)
+      (notmuch-search-previous-thread)
+    (notmuch-search-next-thread)))
+
