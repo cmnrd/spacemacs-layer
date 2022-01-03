@@ -1,0 +1,4 @@
+This is my custom layer for configuring org. Currently, it only extends org-roam
+such that the 'tasks' tag is added if the node contains any todo items.
+
+This solution is inspired from https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html.
