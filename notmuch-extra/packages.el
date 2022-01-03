@@ -62,4 +62,5 @@
       (kbd "J") 'notmuch-jump-search
       (kbd "L") 'notmuch-search-filter
       (kbd "g") 'notmuch-refresh-this-buffer
-      (kbd "M") 'compose-mail-other-frame)))
+      (kbd "M") 'compose-mail-other-frame
+      (kbd "S") 'notmuch-extra-search-spam)))

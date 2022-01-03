@@ -52,3 +52,9 @@
       (notmuch-search-previous-thread)
     (notmuch-search-next-thread)))
 
+(defun notmuch-extra-search-spam ()
+  "Mark thread as spam down."
+  (interactive)
+  (notmuch-search-tag '("-inbox" "-unread" "+spam"))
+  (notmuch-search-next-thread))
+
