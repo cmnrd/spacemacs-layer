@@ -14,4 +14,6 @@
   (add-to-list 'org-tags-exclude-from-inheritance "tags")
   (add-hook 'find-file-hook #'org-extra-update-tasks-tag)
   (add-hook 'before-save-hook #'org-extra-update-tasks-tag)
+  ;; set the default archive command to org-archive-to-archive-sibling
+  (setq org-archive-default-command 'org-archive-to-archive-sibling)
   )
