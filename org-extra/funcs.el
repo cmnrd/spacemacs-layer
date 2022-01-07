@@ -5,6 +5,12 @@
 ;; This file is not part of GNU Emacs.
 
 
+(defun org-extra-is-archivedp (h)
+  "Recursively check if the heading has the ARCHIVE tag"
+  (when h
+    (or (org-element-property :archivedp h)
+        (org-extra-is-archivedp (org-element-property :parent h)))))
+
 (defun org-extra-contains-tasks-p ()
   "Return non-nil if current buffer has any task entries.
 
@@ -14,7 +20,7 @@
       (org-element-parse-buffer 'headline)  ; (1)
       'headline
     (lambda (h)
-      (and (not (org-element-property :archivedp h))
+      (and (not (org-extra-is-archivedp h))
            (or (eq (org-element-property :todo-type h) 'todo)
                (eq (org-element-property :todo-type h) 'done)
                )))
