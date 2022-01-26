@@ -19,4 +19,5 @@
   (add-hook 'before-save-hook #'org-extra-update-tasks-tag)
   ;; set the default archive command to org-archive-to-archive-sibling
   (setq org-archive-default-command 'org-archive-to-archive-sibling)
+  (advice-add 'org-agenda :before #'org-extra-update-agenda-files)
   )

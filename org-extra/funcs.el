@@ -54,3 +54,19 @@
        (string-prefix-p
         (expand-file-name (file-name-as-directory org-roam-directory))
         (file-name-directory buffer-file-name))))
+
+(defun org-extra-task-files ()
+  "Return a list of note files containing 'tasks' tag." ;
+  (seq-uniq
+   (seq-map
+    #'car
+    (org-roam-db-query
+     [:select [nodes:file]
+              :from tags
+              :left-join nodes
+              :on (= tags:node-id nodes:id)
+              :where (like tag (quote "%\"tasks\"%"))]))))
+
+(defun org-extra-update-agenda-files (&rest _)
+  "Update the value of `org-agenda-files'."
+  (setq org-agenda-files (org-extra-task-files)))
