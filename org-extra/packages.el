@@ -20,4 +20,9 @@
   ;; set the default archive command to org-archive-to-archive-sibling
   (setq org-archive-default-command 'org-archive-to-archive-sibling)
   (advice-add 'org-agenda :before #'org-extra-update-agenda-files)
+  (setq org-agenda-prefix-format
+        '((agenda . " %i %-32(org-extra-agenda-category 32)%?-22t% s")
+          (todo . " %i %-32(org-extra-agenda-category 32) ")
+          (tags . " %i %-32(org-extra-agenda-category 32) ")
+          (search . " %i %-32(org-extra-agenda-category 32) ")))
   )
