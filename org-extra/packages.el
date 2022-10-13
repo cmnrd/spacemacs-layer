@@ -5,13 +5,20 @@
 ;; This file is not part of GNU Emacs.
 
 (defconst org-extra-packages
-  '(vulpea org crux))
+  '(vulpea org crux org-roam-bibtex))
 
 (defun org-extra/init-vulpea ()
   (use-package vulpea))
 
 (defun org-extra/init-crux ()
   (use-package crux))
+
+(defun org-extra/init-org-roam-bibtex ()
+  (use-package org-roam-bibtex
+    :after org-roam
+    :hook (org-roam-mode . org-roam-bibtex-mode)
+    :config
+    (require 'org-ref)))
 
 (defun org-extra/post-init-org ()
   (add-to-list 'org-tags-exclude-from-inheritance "tags")
