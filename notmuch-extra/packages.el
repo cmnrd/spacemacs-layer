@@ -63,4 +63,9 @@
       (kbd "L") 'notmuch-search-filter
       (kbd "g") 'notmuch-refresh-this-buffer
       (kbd "M") 'compose-mail-other-frame
-      (kbd "S") 'notmuch-extra-search-spam)))
+      (kbd "S") 'notmuch-extra-search-spam))
+
+
+  ;; Support for the legacy "x-" type.
+  (fset 'notmuch-show-insert-part-application/x-pkcs7-mime 'notmuch-extra-show-insert-part-application/pkcs7-mime))
+(fset 'notmuch-show-insert-part-application/pkcs7-mime 'notmuch-extra-show-insert-part-application/pkcs7-mime)

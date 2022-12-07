@@ -58,3 +58,16 @@
   (notmuch-search-tag '("-inbox" "-unread" "+spam"))
   (notmuch-search-next-thread))
 
+;; code from https://www.mail-archive.com/notmuch@notmuchmail.org/msg52834.html
+(defun notmuch-extra-show-insert-part-application/pkcs7-mime (msg part _content-type _nth depth _button)
+   "Render S/MIME protected content after decryption.
+
+    An alias for this function is also defined to handle entities
+    using the legacy application/x-pkcs7-mime MIME type."
+     (let* ((encstatus (car (plist-get part :encstatus)))
+             	 (inner-part (car (plist-get part :content))))
+            ;; Insert a button detailing the encryption status.
+            (notmuch-crypto-insert-encstatus-button encstatus)
+            (if (not (string= (plist-get encstatus :status) "bad"))
+                         ;; Show all decrypted parts.
+                      (notmuch-show-insert-bodypart msg inner-part depth))))
