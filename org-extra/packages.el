@@ -5,7 +5,7 @@
 ;; This file is not part of GNU Emacs.
 
 (defconst org-extra-packages
-  '(vulpea org crux org-roam-bibtex org-fancy-priorities))
+  '(vulpea org crux org-roam-bibtex org-fancy-priorities org-protocol))
 
 (defun org-extra/init-vulpea ()
   (use-package vulpea))
@@ -30,6 +30,9 @@
           org-highest-priority 1
           org-default-priority 3
           org-fancy-priorities-list '((?1 . "A*") (?2 . "A") (?3 . "B") (?4 . "C") (?5 . "D")))))
+
+(defun org-extra/init-org-protocol ()
+  (use-package org-protocol))
 
 (defun org-extra/post-init-org ()
   (add-to-list 'org-tags-exclude-from-inheritance "tags")
