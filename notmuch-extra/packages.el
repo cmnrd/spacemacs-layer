@@ -27,6 +27,10 @@
     (setq message-sendmail-envelope-from 'header)
     (setq mail-envelope-from 'header)
 
+    ;; don't insert signature automatically
+    (setq mail-signature nil)
+    (setq message-signature nil)
+
     ;; use icons to visualize often used tags
     (setq notmuch-tag-formats `(("unread" (all-the-icons-octicon "mail"))
                                 ("inbox" (all-the-icons-octicon "inbox"))
